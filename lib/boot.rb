@@ -1,4 +1,5 @@
 require "sinatra/base"
+require "bundler/setup"
 require "shotgun"
 require "mongomatic"
 require "rack-flash"

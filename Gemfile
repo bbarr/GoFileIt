@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem "mote", :git => "git://github.com/dgalarza/mote.git"
 gem "sinatra"
 gem "rack-flash"
 gem "shotgun"
