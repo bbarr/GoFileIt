@@ -1,9 +1,7 @@
-module GFI    
-  class Field < ::Mongomatic::Base
-    
-    def collection_name 
-      "Fields" 
-    end
-    
+class Field < Mote::Document
+  
+  def collection_name 
+    "Fields" 
   end
+  
 end

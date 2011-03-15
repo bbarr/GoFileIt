@@ -1,11 +1,10 @@
 source "http://rubygems.org"
 
-gem "mote", :git => "git://github.com/dgalarza/mote.git"
+gem "mote", :git => "git://github.com/bbarr/mote.git"
 gem "sinatra"
 gem "rack-flash"
 gem "shotgun"
 gem "json"
 gem "haml"
 gem "warden"
-gem "mongomatic"
-gem "rspec"
+gem "rspec", :group => :development

@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/dgalarza/mote.git
-  revision: 23afeccb3c154f6d92ab73a18e18bc0838b3a26d
+  remote: git://github.com/bbarr/mote.git
+  revision: f7ad6c96f9d3c892dfd0875136ba19710c07ef09
   specs:
     mote (0.5.2)
       activemodel (~> 3.0.0)
@@ -28,10 +28,6 @@ GEM
     json (1.5.1)
     mongo (1.2.4)
       bson (>= 1.2.4)
-    mongomatic (0.7.3)
-      activesupport (>= 2.3.5)
-      bson (~> 1.1)
-      mongo (~> 1.1)
     rack (1.2.1)
     rack-flash (0.1.1)
       rack
@@ -58,7 +54,6 @@ PLATFORMS
 DEPENDENCIES
   haml
   json
-  mongomatic
   mote!
   rack-flash
   rspec

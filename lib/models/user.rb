@@ -1,14 +1,14 @@
-module GFI    
-  class User < ::Mongomatic::Base
+class User < Mote::Document
+  include Mote::Keys
+  
+  key :name
+  key :email
+  
+  def validate
     
-    def self.collection_name
-      "Users"
-    end
-    
-    def validate
-      self.errors.add :email, "can't be empty" if self['email'].blank?
-      self.errors.add :password, "can't be empty" if self['password'].blank?
-      self.errors.add :confirm_password, 'must match password' unless self['confirm_password'] == self['password']
-    end
+    errors['name'] = 'Must have name' if self['name'].nil?
+    errors['email'] = 'Must have email' if self['email'].nil?
+  
+    errors['email'] = 'Email is already in use' unless User.find_one(:email => self['email']).nil?
   end
 end

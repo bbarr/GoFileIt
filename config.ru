@@ -8,6 +8,6 @@ map "/documents" do
 	run GFI::Documents
 end
 
-map "/account" do
-	run GFI::Accounts
+map "/user" do
+	run GFI::Users
 end

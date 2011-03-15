@@ -12,6 +12,6 @@ task :seed do
     :password => "password", 
     :password_confirmation => "passdword"
   )
-  user.inspect
+
   user.insert!
 end
