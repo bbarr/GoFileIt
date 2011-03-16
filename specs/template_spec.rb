@@ -1,4 +1,4 @@
-require "boot.rb"
+require "spec_helper.rb"
 
 describe Template do
   
