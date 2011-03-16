@@ -10,6 +10,4 @@ describe Template do
     Template.collection.drop
   end
   
-  it "should "
-  
 end
