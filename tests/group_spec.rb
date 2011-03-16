@@ -2,12 +2,13 @@ require "boot.rb"
 
 describe Group do
   
-  before do
-    @user = User.new :name => "brendan", :email => "bbarr@bbarr.com"
-    @group = Group.new :name => 'a group', @user
+  before :each do
+    @user = User.create :name => "brendan", :email => "bbarr@bbarr.com"
+    @group = Group.new :name => 'a group', :users => @user
   end
   
-  after do
+  after :each do
+    User.collection.drop
     Group.collection.drop
   end
   
@@ -21,8 +22,10 @@ describe Group do
     dup.errors['name'].should == 'Name must be unique'
   end
   
-  it "should create group with initial user(s)" do
-    @group.users = [@user]
+  it "should create group with initial user" do
+    @group.users[0][:user_id].should == @user['_id']
   end
   
+  
+    
 end
