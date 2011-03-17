@@ -5,6 +5,9 @@ Bundler.require
 # require base app first
 require File.join(File.dirname(__FILE__), "./apps/base.rb")
 
+# require all helpers
+Dir.glob(File.join(File.dirname(__FILE__), "./helpers/*.rb")) { |file| require file }
+
 # now require all the other apps
 Dir.glob(File.join(File.dirname(__FILE__), "./apps/*.rb")) { |file| require file }
 

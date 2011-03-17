@@ -24,8 +24,18 @@ describe Group do
   
   it "should add an additional user with a specified rank" do
     new_user = User.create :name => 'foo', :email => 'c@d.com'
-    @group.add_user(new_user, 2)
+    @group.add(new_user, 2)
     @group.users[1][:rank].should == 2
   end
-    
+  
+  it "should remove a user" do
+    @group.remove @user
+    @group.users.count.should == 0
+  end
+  
+  it "should adjust the rank of an existing member" do
+    @group.rank @user, 3
+    @group.users[0][:rank].should == 3
+  end
+
 end
