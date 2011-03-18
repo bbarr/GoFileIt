@@ -1,6 +1,4 @@
-class Field < Mote::Document
-  include Mote::Keys
-  include GFI::Validations
+class Field < Base
   
   key :user_id
   
@@ -8,9 +6,5 @@ class Field < Mote::Document
   key :value
   key :data
   key :rules, :default => []
-  
-  def validate
-    self[:rules].each { |r| self[:value] unless r.nil? }
-  end
   
 end

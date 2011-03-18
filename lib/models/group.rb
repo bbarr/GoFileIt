@@ -1,5 +1,4 @@
-class Group < Mote::Document
-  include Mote::Keys
+class Group < Base
   
   key :name
   key :users, :default => []
@@ -16,26 +15,18 @@ class Group < Mote::Document
   
   def add user, rank=0 
     user = [user] unless user.is_a? Array
-    user.each { |u| users.push({ :user_id => get_id(u), :rank => rank }) }
+    user.each { |u| users.push({ :user_id => get_user_id(u), :rank => rank }) }
   end
   
   def remove user
-    id = get_id user
+    id = get_user_id user
     user = [user] unless user.is_a? Array
     user.each { |u| users.delete_if { |u| u[:user_id] == id } }
   end
   
   def rank user, rank
-    id = get_id user
+    id = get_user_id user
     users.each { |u| u[:rank] = rank if u[:user_id] == id }
   end
-  
-  private
     
-    def get_id something
-      return something if something.is_a? BSON::ObjectId
-      return something['_id'] if something.is_a? User
-      print something.class
-    end
-  
 end

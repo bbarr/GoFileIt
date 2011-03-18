@@ -1,7 +1,3 @@
-class Document < Mote::Document
+class Document < Base
   
-  def collection_name 
-    "Documents" 
-  end
-
 end
