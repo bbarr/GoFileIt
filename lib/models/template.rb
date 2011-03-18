@@ -1,5 +1,5 @@
-class Template < Base
-  
+class Template < Mote::Document
+  include Mote::Keys
   key :user_id
   
   key :name

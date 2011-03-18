@@ -1,4 +1,5 @@
-class Group < Base
+class Group < Mote::Document
+  include Mote::Keys
   
   key :name
   key :users, :default => []
@@ -28,5 +29,13 @@ class Group < Base
     id = get_user_id user
     users.each { |u| u[:rank] = rank if u[:user_id] == id }
   end
+  
+  private 
+    
+    def get_user_id something
+      return something if something.is_a? BSON::ObjectId
+      return something['_id'] if something.is_a? User
+      # raise exception
+    end
     
 end

@@ -1,5 +1,5 @@
-class User < Base
-  
+class User < Mote::Document
+  include Mote::Keys
   key :name
   key :email
   

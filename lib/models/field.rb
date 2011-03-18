@@ -1,5 +1,5 @@
-class Field < Base
-  
+class Field < Mote::Document
+  include Mote::Keys
   key :user_id
   
   key :name
