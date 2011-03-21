@@ -7,35 +7,14 @@ class Field < Mote::Document
   key :type
   key :rules, :default => []
 
-  attr_accessor :populated
-
-  def instantiate_document hash
-    super
-    populated = false;
-  end
-  
-  def errors
-    @errors ||= {}
-  end
+  attr_writer :value
   
   def value
     @value ||= ''
   end
   
-  def accepts? v
-    value = v
-    true
-  end
-  
-  def populate data
-    populated = true
-  end
-  
-  def flush
-    populated = false
-    v = value
-    value = nil
-    v
+  def populate params
+    self.value = params[name] unless params[name].nil?
   end
   
 end
