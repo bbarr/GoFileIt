@@ -1,0 +1,22 @@
+!!!
+%html
+	%head
+		%link{ :rel => "stylesheet", :href => "/css/base.css" }
+	%body
+		
+		%header
+			%h1 title
+		
+		%sidebar
+			= content :sidebar
+		
+		#content
+			= content :content
+		
+		%footer
+			%p footer
+		
+		%script{ :type => "text/javascript", :src => "/js/jquery.js" }
+		%script{ :type => "text/javascript", :src => "/js/underscore.js" }
+		%script{ :type => "text/javascript", :src => "/js/go_file_it.js" }
+		= content :js

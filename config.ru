@@ -11,3 +11,7 @@ end
 map "/user" do
 	run GFI::Users
 end
+
+map "/dashboard" do
+	run GFI::Dashboard
+end

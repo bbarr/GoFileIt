@@ -13,10 +13,9 @@ class Document < Mote::Document
   
   def fields
     return @fields unless @fields.nil?
-    
-    # grab real field objects from document template list of field ids
     @fields = template.fields.map { |id| Field.find_one({ '_id' => id }) }
     values_to_fields
+    @fields
   end
   
   def populate params
@@ -24,7 +23,7 @@ class Document < Mote::Document
   end
   
   def validate
-    self['errors'] = fields.map { |f| f.errors unless f.errors.empty? }.delete_if { |e| e.nil? }.flatten
+    self['errors'] = fields.map { |f| f.value_errors unless f.value_errors.empty? }.delete_if { |e| e.nil? }.flatten
   end
 
   private

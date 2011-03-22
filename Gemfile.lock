@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/bbarr/mote.git
-  revision: 367c5463051481e70276b5a56a63fb9f42c4cc4e
+  revision: 40619086294ec8bb3f79b0e9db3ee6c2d812ecc1
   specs:
     mote (0.5.3)
       activemodel (~> 3.0.0)

@@ -1,9 +1,9 @@
 module GFI
   class Documents < Base
-   
+    
     get "/" do
-      content_type :json
-      Document.find.to_a.to_json
+      @docs = Document.all
+      haml :"documents/index"
     end
     
     get "/:type" do

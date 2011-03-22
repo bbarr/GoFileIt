@@ -2,16 +2,14 @@ require "rake"
 require File.join(File.dirname(__FILE__), "lib/boot.rb");
 
 task :truncate do
-  Mongomatic.db.collection("Users").drop
+  User.collection.drop
 end
 
 task :seed do
   
-  user = GFI::User.new(
-    :email => "somedude@gmail.com", 
-    :password => "password", 
-    :password_confirmation => "passdword"
+  user = User.create(
+    :name => "bbarr",
+    :email => "bbarr@gmail.com"
   )
-
-  user.insert!
+  
 end

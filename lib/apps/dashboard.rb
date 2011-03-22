@@ -1,9 +1,9 @@
 module GFI
-  class Public < Base
+  class Dashboard < Base
     
     get "/" do
       @user = User.find_one
-      haml :index
+      haml :"dashboard/index"
     end
     
   end

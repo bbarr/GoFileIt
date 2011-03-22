@@ -29,8 +29,18 @@ describe Document do
     end
   end
   
-  it "should populate field objects with any stored values" do
-    
+  it "should pass any existing document values into new list of field objects" do
+    @document.populate({ 'username' => 'bbarr' })
+    @document.save
+    doc = Document.find_one({ '_id' => @document['_id'] })
+    doc.fields[0].value.should == 'bbarr'
+  end
+  
+  it "should pass any field values back into document values array before saving" do
+    @document.populate({ 'username' => 'bbarr' })
+    @document.values[0].should == nil
+    @document.save
+    @document.values[0].should == @document.fields[0].value
   end
   
   it "should populate its value array with incoming key-value data" do
