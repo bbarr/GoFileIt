@@ -25,3 +25,57 @@ module GFI
     end
   end
 end
+
+module GFI
+  module Helpers
+    module Model
+      
+      # def self.included(base)
+      #   base.extend(ClassMethods)
+      # end
+      # 
+      def get_id subject
+        return subject if subject.is_a? BSON::ObjectId
+        return subject['_id'] unless subject['_id'].nil?
+        # exception
+      end
+      # 
+      # def find_by_id subject
+      #   id = get_id subject
+      #   self.class.find( { '_id' => id } )
+      # end
+      # 
+      # def method_missing(m, *args, &block)
+      #   id_list = m.to_sym
+      #   if self.class.id_lists.include? id_list
+      #     fetch_id_list id_list
+      #   end
+      # end
+      # 
+      # def fetch_id_list id_list
+      #   resource_name = id_list.sub(/_id$/, '').capitalize
+      #   self[id_list].map do |element|
+      #     return element if element.is_a? BSON::ObjectId
+      #     element.each do |k, v|
+      #       if k.grep(/_id$/)
+      #         
+      #       end
+      #     end
+      #   end
+      # end
+      #     
+      # module ClassMethods
+      #   
+      #   def id_lists
+      #     @id_lists ||= []
+      #   end
+      #   
+      #   def id_list key
+      #     self.id_lists.push key
+      #   end
+      #   
+      # end
+
+    end
+  end
+end

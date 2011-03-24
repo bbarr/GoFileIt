@@ -1,5 +1,6 @@
 class Field < Mote::Document
   include Mote::Keys
+  include GFI::Helpers::Model
   
   key :user_id
   

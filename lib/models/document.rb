@@ -1,6 +1,7 @@
 class Document < Mote::Document
   include Mote::Keys
   include Mote::Callbacks
+  include GFI::Helpers::Model
   
   key :template_id
   key :values, :default => []

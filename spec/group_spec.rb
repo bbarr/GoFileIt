@@ -37,5 +37,9 @@ describe Group do
     @group.rank @user, 3
     @group.users[0][:rank].should == 3
   end
+  
+  it "should add its _id to its user's group property" do
+    @user.group.should == @group['_id']
+  end
 
 end

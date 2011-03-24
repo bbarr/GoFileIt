@@ -3,18 +3,20 @@
 	%head
 		%link{ :rel => "stylesheet", :href => "/css/base.css" }
 	%body
-		
-		%header
-			%h1 title
-		
-		%sidebar
-			= content :sidebar
-		
-		#content
-			= content :content
-		
-		%footer
-			%p footer
+		#container
+			%header
+				%h1 GoFile.It
+				%ul
+					%li= "Hi, #{@user.name}"
+					%li
+						%a{ :href => '/user/edit' } Edit
+					%li
+						%a{ :href => '/logout' } Logout
+				
+			#content
+				= content :content
+
+			%footer
 		
 		%script{ :type => "text/javascript", :src => "/js/jquery.js" }
 		%script{ :type => "text/javascript", :src => "/js/underscore.js" }

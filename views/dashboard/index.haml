@@ -1,12 +1,42 @@
-- content_for :sidebar do
-	%ul
-		%li
-			%a{ :href => '/templates' } Templates
-		%li
-			%a{ :href => '/documents' } Documents
-	
 - content_for :content do
-	
-			
-		
-	
+	- unless @user.co_users.empty?
+		.module
+			.head
+				%h3 Users
+			.body
+				%a{ :href => '/users/new' } Add
+				%table
+					%thead
+						%tr
+							%th name:
+							%th email:
+							%th rank:
+					%tbody
+						- @user.co_users.each do |u|
+							%tr
+								%td u.name
+								%td u.email
+								%td u.rank
+
+	.module
+		.head
+			%h3 Documents
+		.body
+			%a{ :href => '/documents/new' } Add
+			%table
+				%thead
+					%tr
+						%th template:
+
+	.module
+		.head
+			%h3 Templates
+		.body
+			%a{ :href => '/templates/new' } Add
+			body stuff
+	.module
+		.head
+			%h3 Fields
+		.body
+			%a{ :href => '/fields/new' } Add
+			body stuff

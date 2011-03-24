@@ -1,5 +1,6 @@
 class Group < Mote::Document
   include Mote::Keys
+  include GFI::Helpers::Model
   
   key :name
   key :users, :default => []
@@ -14,9 +15,17 @@ class Group < Mote::Document
     errors['name'] = 'Name must be unique' unless Group.find_one(:name => self['name']).nil?
   end
   
-  def add user, rank=0 
+  def add user, rank=0
+    
+    # must have an id to assign to any incoming users
+    self.save if self['_id'].nil?
+    
     user = [user] unless user.is_a? Array
-    user.each { |u| users.push({ :user_id => get_id(u), :rank => rank }) }
+    user.each do |u| 
+      u.group = self['_id']
+      u.save
+      users.push({ :user_id => get_id(u), :rank => rank })
+    end
   end
   
   def remove user
