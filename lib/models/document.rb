@@ -1,20 +1,19 @@
 class Document < Mote::Document
   include Mote::Keys
   include Mote::Callbacks
-  include GFI::Helpers::Model
   
-  key :template_id
+  key :form_id
   key :values, :default => []
   
   before_save :fields_to_values
   
-  def template
-    @template ||= Template.find_one({ '_id' => template_id })
+  def form
+    @form ||= Form.find_by_id form_id
   end
   
   def fields
     return @fields unless @fields.nil?
-    @fields = template.fields.map { |id| Field.find_one({ '_id' => id }) }
+    @fields = form.fields.map { |id| Field.find_by_id id }
     values_to_fields
     @fields
   end

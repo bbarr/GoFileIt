@@ -1,6 +1,5 @@
-class Template < Mote::Document
+class Form < Mote::Document
   include Mote::Keys
-  include GFI::Helpers::Model
   
   key :user_id
   

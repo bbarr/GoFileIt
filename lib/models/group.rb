@@ -1,6 +1,5 @@
 class Group < Mote::Document
   include Mote::Keys
-  include GFI::Helpers::Model
   
   key :name
   key :users, :default => []

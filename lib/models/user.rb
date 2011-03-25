@@ -1,7 +1,6 @@
 class User < Mote::Document
   include Mote::Keys
-  include GFI::Helpers::Model  
-  
+
   key :name
   key :email
   key :group, :default => false
@@ -19,7 +18,7 @@ class User < Mote::Document
     group = self['group']
     return [] unless group
     @co_users = group['users'].map do |u|
-      User.find_one({ '_id' => u.user_id })
+      User.find_by_id u.user_id
     end
   end
 end
