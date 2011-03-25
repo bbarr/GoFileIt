@@ -3,7 +3,8 @@ class User < Mote::Document
 
   key :name
   key :email
-  key :group, :default => false
+  key :password
+  key :group
   
   attr_accessor :rank
   
@@ -15,10 +16,20 @@ class User < Mote::Document
   
   def co_users
     return @co_users unless @co_users.nil?
-    group = self['group']
-    return [] unless group
+    
+    return nil if self['group'].nil?
+
+    group = Group.find_by_id self['group']
+
     @co_users = group['users'].map do |u|
-      User.find_by_id u.user_id
+      user = User.find_by_id u['user_id']
+      user.rank = u['rank']
+      user
     end
+  end
+  
+  def find_forms
+    users = co_users || [self]
+    users.map { |u| Form.find({ 'user_id' => u['_id'] }).to_a }.flatten
   end
 end

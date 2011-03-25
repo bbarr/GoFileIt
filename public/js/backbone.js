@@ -799,7 +799,7 @@
       return this;
     },
 
-    // For small amounts of DOM Elements, where a full-blown template isn't
+    // For small amounts of DOM Elements, where a full-blown form isn't
     // needed, use **make** to manufacture elements, one at a time.
     //
     //     var el = this.make('li', {'class': 'row'}, this.model.escape('title'));

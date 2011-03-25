@@ -4,7 +4,8 @@ describe Group do
   
   before :each do
     @user = User.create :name => "brendan", :email => "bbarr@bbarr.com"
-    @group = Group.create :name => 'a group', :users => @user
+    @group = Group.create :name => 'a group'
+    @group.add @user
   end
   
   after :each do
@@ -29,8 +30,12 @@ describe Group do
   end
   
   it "should remove a user" do
-    @group.remove @user
+    @group.remove @user['_id']
     @group.users.count.should == 0
+  end
+  
+  it "should assign a default rank of 0 if not specified for new user" do
+    @group.users[0][:rank].should == 0
   end
   
   it "should adjust the rank of an existing member" do

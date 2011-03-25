@@ -5,5 +5,9 @@ module GFI
     use Rack::Flash
     enable :sessions
     
+    def current_user
+      @current_user ||= User.find_one
+    end
+    
   end
 end

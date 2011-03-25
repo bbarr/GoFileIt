@@ -2,8 +2,15 @@ module GFI
   class Public < Base
     
     get "/" do
-      @user = User.find_one
       haml :index
+    end
+    
+    get "/about" do
+      haml :about
+    end
+    
+    get "/contact" do
+      haml :contact
     end
     
   end
