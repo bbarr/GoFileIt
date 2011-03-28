@@ -15,5 +15,9 @@ describe Form do
   it "should associate with a user" do    
     User.find_by_id(@form.user_id).should == @user
   end
+  
+  it "should handle missing methods if they start with find_by" do
+    Form.find_by_user @user
+  end
 
 end

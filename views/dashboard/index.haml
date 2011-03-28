@@ -1,5 +1,7 @@
 - content_for :content do
-	- unless @user.co_users.empty?
+	= @forms.inspect
+	= @documents.inspect
+	- if current_user.group
 		.module
 			.head
 				%h3 Users
@@ -12,11 +14,11 @@
 							%th email:
 							%th rank:
 					%tbody
-						- @user.co_users.each do |u|
+						- current_user.co_users.each do |u|
 							%tr
-								%td u.name
-								%td u.email
-								%td u.rank
+								%td= u.name
+								%td= u.email
+								%td= u.rank
 
 	.module
 		.head

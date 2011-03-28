@@ -13,8 +13,8 @@ describe User do
     Form.collection.drop
   end
   
-  it "should return nil if co_users are accessed while not in a group" do
-    @user.co_users.nil?.should == true
+  it "should return array with just himself if co_users are accessed while not in a group" do
+    @user.co_users[0].should == @user
   end
   
   it "should generate a list of its co_users (including itself) if in a group" do
@@ -30,7 +30,7 @@ describe User do
     test_form = Form.create :name => 'co_users form', :user_id => co_user['_id']
     Form.create :name => 'users form', :user_id => @user['_id']
     
-    @user.find_forms.count.should == 2
+    @user.forms.count.should == 2
   end
   
 end

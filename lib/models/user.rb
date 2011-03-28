@@ -16,8 +16,7 @@ class User < Mote::Document
   
   def co_users
     return @co_users unless @co_users.nil?
-    
-    return nil if self['group'].nil?
+    return [self] if self['group'].nil?
 
     group = Group.find_by_id self['group']
 
@@ -28,8 +27,8 @@ class User < Mote::Document
     end
   end
   
-  def find_forms
-    users = co_users || [self]
-    users.map { |u| Form.find({ 'user_id' => u['_id'] }).to_a }.flatten
+  def forms
+    return @forms unless @forms.nil?
+    @forms = Form.find({ 'user_id' => { '$in' => co_users.map { |u| u['_id'] } } })
   end
 end

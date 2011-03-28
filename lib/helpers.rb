@@ -29,9 +29,19 @@ end
 module Mote
   class Document
     
-    def self.find_by_id id
-      self.find_one( { '_id' => id } )
+    class << self
+      
+      def method_missing name, *args
+        if name.match /^find_by/
+          self.find({ args[0] })
+        end
+      end
+      def find_by_id id
+        self.find_one( { '_id' => id } )
+      end
+      
     end
+    
     
     def get_id subject
       return subject if subject.is_a? BSON::ObjectId
