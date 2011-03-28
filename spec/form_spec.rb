@@ -4,7 +4,7 @@ describe Form do
 
   before :each do
     @user = User.create :name => 'bbarr', :email => 'b@barr.com'
-    @form = Form.new :user_id => @user['_id'], :name => 'test'
+    @form = Form.create :user_id => @user['_id'], :name => 'test'
   end
   
   after :each do
@@ -15,9 +15,10 @@ describe Form do
   it "should associate with a user" do    
     User.find_by_id(@form.user_id).should == @user
   end
-  
-  it "should handle missing methods if they start with find_by" do
-    Form.find_by_user @user
+
+  it "should return a list of associated documents" do
+    doc = Document.create :form_id => @form['_id']
+    @form.documents.to_a[0].should == doc
   end
 
 end

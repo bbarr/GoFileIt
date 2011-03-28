@@ -31,11 +31,23 @@ module Mote
     
     class << self
       
-      def method_missing name, *args
-        if name.match /^find_by/
-          self.find({ args[0] })
-        end
-      end
+      # def method_missing name, *args
+      #   resource = name.match /^find_by_(.+)/
+      #   if resource
+      #     
+      #     embedded = args[0]
+      #     embedded = [embedded] unless embedded.is_a? Array
+      #     embedded.map! { |e| self.get_id e }
+      #     
+      #     if resource.match /_ids$/
+      #       self.find({ resource => { '$in' => } })
+      #     else
+      #       
+      #     end
+      #     
+      #   end
+      # end
+      
       def find_by_id id
         self.find_one( { '_id' => id } )
       end

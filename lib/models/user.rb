@@ -17,18 +17,13 @@ class User < Mote::Document
   def co_users
     return @co_users unless @co_users.nil?
     return [self] if self['group'].nil?
-
     group = Group.find_by_id self['group']
-
-    @co_users = group['users'].map do |u|
-      user = User.find_by_id u['user_id']
-      user.rank = u['rank']
-      user
-    end
+    @co_users = group['users']
   end
   
   def forms
     return @forms unless @forms.nil?
-    @forms = Form.find({ 'user_id' => { '$in' => co_users.map { |u| u['_id'] } } })
+    save if self['_id'].nil?
+    @forms = Form.find({ 'user_id' => self['_id'] })
   end
 end

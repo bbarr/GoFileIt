@@ -3,8 +3,8 @@ module GFI
     
     get "/" do
       
-      @forms = Cabinet.forms_by current_user.co_users
-      @documents = Cabinet.documents_by current_user.co_users
+      @forms = Form.find({ 'user_id' => { '$in' => current_user.co_users.map { |u| u['_id'] } } }).to_a
+      @documents = Document.find({ 'form_id' => { '$in' => @forms.map { |f| f['_id'] } } }).to_a
       
       haml :"dashboard/index"
     end

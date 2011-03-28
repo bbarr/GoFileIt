@@ -1,5 +1,6 @@
 class Form < Mote::Document
   include Mote::Keys
+  include Mote::Timestamps
   
   key :user_id
   
@@ -7,9 +8,15 @@ class Form < Mote::Document
   key :description
   key :fields, :default => []
   
-  def self.find_by_user user
-    user = [user] unless user.is_a? Array
-    
+  def documents
+    return @documents unless @documents.nil?
+    save if self['_id'].nil?
+    @documents = Document.find({ 'form_id' => self['_id'] })
+  end
+  
+  def user
+    return @user unless @user.nil?
+    @user = User.find_by_id self['user_id']
   end
    
 end

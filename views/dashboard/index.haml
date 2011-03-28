@@ -1,6 +1,4 @@
 - content_for :content do
-	= @forms.inspect
-	= @documents.inspect
 	- if current_user.group
 		.module
 			.head
@@ -19,26 +17,26 @@
 								%td= u.name
 								%td= u.email
 								%td= u.rank
-
+								
 	.module
 		.head
-			%h3 Documents
+			%h3 Forms
 		.body
-			%a{ :href => '/documents/new' } Add
+			%a{ :href => '/forms/new' } add
 			%table
 				%thead
 					%tr
-						%th template:
-
-	.module
-		.head
-			%h3 Templates
-		.body
-			%a{ :href => '/templates/new' } Add
-			body stuff
-	.module
-		.head
-			%h3 Fields
-		.body
-			%a{ :href => '/fields/new' } Add
-			body stuff
+						%th name:
+						%th description:
+						%th author:
+						%th creation date:
+						%th actions:
+				%tbody
+					- @forms.each do |f|
+						%tr
+							%td= f.name
+							%td= f.description || '- No description -'
+							%td= f.user.name
+							%td= f.created_at
+							%td
+								%a{ :href => '/forms/' + f.name } edit
