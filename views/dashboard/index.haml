@@ -29,14 +29,15 @@
 						%th name:
 						%th description:
 						%th author:
-						%th creation date:
-						%th actions:
+						%th admin
 				%tbody
 					- @forms.each do |f|
 						%tr
 							%td= f.name
 							%td= f.description || '- No description -'
 							%td= f.user.name
-							%td= f.created_at
+							%td= f['actions'].last[1] + ' - ' + f.actions.last[2]
 							%td
 								%a{ :href => '/forms/' + f.name } edit
+								= '/'
+								%a{ :href => '/' }

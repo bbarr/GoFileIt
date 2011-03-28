@@ -1,11 +1,14 @@
 class Document < Mote::Document
   include Mote::Keys
   include Mote::Callbacks
+  include Mote::Timestamps
   
   key :form_id
   key :values, :default => []
+  key :actions, :default => []
   
   before_save :fields_to_values
+  after_save :record_action
   
   def form
     @form ||= Form.find_by_id form_id
@@ -36,6 +39,14 @@ class Document < Mote::Document
       self['values'].each_with_index do |v, i|
         fields[i].populate v
       end
+    end
+   
+    def record_action
+      current_user = User.find_one
+      new_action = [ current_user['name'] ]
+      new_action.concat self['actions'].count == 0 ? [ 'Created', self['created_at'] ] : [ 'Edited', self['updated_at'] ]
+      self['actions'] << new_action
+      update
     end
     
 end

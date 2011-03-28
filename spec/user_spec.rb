@@ -22,7 +22,7 @@ describe User do
     @user.co_users[0] == @user
   end
   
-  it "should generate a list of all forms associated with the user or its co_users" do
+  it "should generate a list of all forms associated with the user" do
     @group.add @user
     co_user = User.create :name => 'Allison', :email => 'allison@allison.com'
     @group.add co_user
@@ -30,7 +30,8 @@ describe User do
     test_form = Form.create :name => 'co_users form', :user_id => co_user['_id']
     Form.create :name => 'users form', :user_id => @user['_id']
     
-    @user.forms.count.should == 2
+    @user.forms.count.should == 1
+    co_user.forms.count.should == 1
   end
   
 end
